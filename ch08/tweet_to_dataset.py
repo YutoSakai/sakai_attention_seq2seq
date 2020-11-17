@@ -73,6 +73,7 @@ def load_data(file_name='../../tweet/tweet/tweet2020-11-15嬉しいわ.txt', see
     split_at = len(x) - len(x) // 10
     (x_train, x_test) = x[:split_at], x[split_at:]
     (t_train, t_test) = t[:split_at], t[split_at:]
+    print("train size: " + str(len(x_train)))
     return (x_train, t_train), (t_test, t_test)
 
 
