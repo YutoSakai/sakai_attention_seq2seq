@@ -15,16 +15,14 @@ id_to_word[0] = '<pad>'
 
 def _update_vocab(txt):
     words = m.parse(txt).split(" ")
-    print(words)
     for i, word in enumerate(words):
         if word not in word_to_id:
             tmp_id = len(word_to_id)
             word_to_id[word] = tmp_id
             id_to_word[tmp_id] = word
-    print(id_to_word)
-    print(word_to_id)
 
-def load_data(file_name='../../tweet/tweet/tweet2020-11-15嬉しいわ.txt', size=100, seed=1984):
+
+def load_data(file_name='../../tweet/tweet/tweet2020-11-15嬉しいわ.txt', seed=1984):
     if len(sys.argv) >= 2:
         file_name = sys.argv[1]
     file_path = os.path.dirname(os.path.abspath(__file__)) + '/' + file_name
@@ -36,7 +34,7 @@ def load_data(file_name='../../tweet/tweet/tweet2020-11-15嬉しいわ.txt', siz
     req, res = [], []
     with open(file_path, 'r') as f:
         data = f.readlines()
-        for i in range(size):
+        for i in range(len(data)):
             if (i % 2) == 0:
                 req.append(data[i][4:])
             else:
@@ -58,7 +56,6 @@ def load_data(file_name='../../tweet/tweet/tweet2020-11-15嬉しいわ.txt', siz
     t = numpy.zeros((len(req), max_sentence_len), dtype=numpy.int)
 
     for i, sentence in enumerate(req):
-        print(sentence)
         for j, word in enumerate(m.parse(sentence).split(" ")):
             print([word_to_id[word]])
             x[i][j] = [word_to_id[word]][0]
@@ -77,8 +74,6 @@ def load_data(file_name='../../tweet/tweet/tweet2020-11-15嬉しいわ.txt', siz
     split_at = len(x) - len(x) // 10
     (x_train, x_test) = x[:split_at], x[split_at:]
     (t_train, t_test) = t[:split_at], t[split_at:]
-    print(x_train)
-    print(t_train)
     return (x_train, t_train), (t_test, t_test)
 
 
@@ -87,4 +82,4 @@ def get_vocab():
 
 # print(m.parse("わ～～嬉しいなぁありがとう。").split(" "))
 # _update_vocab("わ～～嬉しいなぁありがとう。")
-load_data()
+# load_data()
