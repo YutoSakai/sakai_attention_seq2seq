@@ -14,7 +14,7 @@ from ch07.peeky_seq2seq import PeekySeq2seq
 
 
 # データの読み込み
-(x_train, t_train), (x_test, t_test) = load_data('date.txt')
+(x_train, t_train), (x_test, t_test) = load_data()
 char_to_id, id_to_char = get_vocab()
 
 # 入力文を反転
