@@ -22,6 +22,8 @@ def _update_vocab(txt):
     print(word_to_id)
 
 def load_data(file_name='../../tweet/tweet/tweet2020-11-15嬉しいわ.txt', size=100, seed=1984):
+    if len(sys.argv) >= 2:
+        file_name = sys.argv[1]
     file_path = os.path.dirname(os.path.abspath(__file__)) + '/' + file_name
 
     if not os.path.exists(file_path):
@@ -64,4 +66,4 @@ def get_vocab():
 
 # print(m.parse("わ～～嬉しいなぁありがとう。").split(" "))
 # _update_vocab("わ～～嬉しいなぁありがとう。")
-load_data(file_name=sys.argv[1])
+load_data()
