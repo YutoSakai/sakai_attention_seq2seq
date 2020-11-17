@@ -54,10 +54,10 @@ def load_data(file_name='../../tweet/tweet/tweet2020-11-15嬉しいわ.txt', siz
     x = numpy.zeros((len(req), max_sentence_len), dtype=numpy.int)
     t = numpy.zeros((len(req), max_sentence_len), dtype=numpy.int)
 
-    for i, sentence in enumerate(x):
+    for i, sentence in enumerate(req):
         print(sentence)
         x[i] = [word_to_id[word] for word in m.parse(sentence).split(" ")]
-    for i, sentence in enumerate(t):
+    for i, sentence in enumerate(res):
         t[i] = [word_to_id[word] for word in m.parse(sentence).split(" ")]
 
     # shuffle
