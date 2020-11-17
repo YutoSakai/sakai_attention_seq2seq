@@ -21,7 +21,7 @@ def _update_vocab(txt):
     print(id_to_word)
     print(word_to_id)
 
-def load_data(file_name='tweet/tweet2020-11-15嬉しいわ.txt', size=100, seed=1984):
+def load_data(file_name='~/tweet/tweet2020-11-15嬉しいわ.txt', size=100, seed=1984):
     file_path = os.path.dirname(os.path.abspath(__file__)) + '/' + file_name
 
     if not os.path.exists(file_path):
