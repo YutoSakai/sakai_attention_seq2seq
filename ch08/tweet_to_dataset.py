@@ -63,4 +63,5 @@ def get_vocab():
     return word_to_id, id_to_word
 
 # print(m.parse("わ～～嬉しいなぁありがとう。").split(" "))
-_update_vocab("わ～～嬉しいなぁありがとう。")
+# _update_vocab("わ～～嬉しいなぁありがとう。")
+load_data()
