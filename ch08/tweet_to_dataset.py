@@ -45,12 +45,11 @@ def load_data(file_name='../../tweet/tweet/tweet2020-11-15嬉しいわ.txt', siz
         _update_vocab(t[i])
 
     # shuffle
-    indices = numpy.arange(len(x))
     if seed is not None:
         numpy.random.seed(seed)
-    numpy.random.shuffle(indices)
-    x = x[indices]
-    t = t[indices]
+    for l in [x, t]:
+        numpy.random.seed(seed)
+        numpy.random.shuffle(l)
 
     # 10% for validation set
     split_at = len(x) - len(x) // 10
