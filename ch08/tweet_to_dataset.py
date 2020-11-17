@@ -44,6 +44,21 @@ def load_data(file_name='../../tweet/tweet/tweet2020-11-15嬉しいわ.txt', siz
         _update_vocab(x[i])
         _update_vocab(t[i])
 
+    # create numpy array
+    max_sentence_len = 0
+    for i in range(len(x)):
+        if max_sentence_len < len(x[i]):
+            max_sentence_len = len(x[i])
+        if max_sentence_len < len(t[i]):
+            max_sentence_len = len(t[i])
+    x = numpy.zeros((len(x), max_sentence_len), dtype=numpy.int)
+    t = numpy.zeros((len(x), max_sentence_len), dtype=numpy.int)
+
+    for i, sentence in enumerate(x):
+        x[i] = [word_to_id[word] for word in m.parse(sentence).split(" ")]
+    for i, sentence in enumerate(t):
+        t[i] = [word_to_id[word] for word in m.parse(sentence).split(" ")]
+
     # shuffle
     if seed is not None:
         numpy.random.seed(seed)
