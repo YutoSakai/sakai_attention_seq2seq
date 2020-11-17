@@ -30,29 +30,29 @@ def load_data(file_name='../../tweet/tweet/tweet2020-11-15嬉しいわ.txt', siz
         print('No file: %s' % file_name)
         return None
 
-    x, t = [], []
+    req, res = [], []
     with open(file_path, 'r') as f:
         data = f.readlines()
         for i in range(size):
             if (i % 2) == 0:
-                x.append(data[i][4:])
+                req.append(data[i][4:])
             else:
-                t.append(data[i][4:])
+                res.append(data[i][4:])
 
     # create vocab dict
-    for i in range(len(x)):
-        _update_vocab(x[i])
-        _update_vocab(t[i])
+    for i in range(len(req)):
+        _update_vocab(req[i])
+        _update_vocab(res[i])
 
     # create numpy array
     max_sentence_len = 0
-    for i in range(len(x)):
-        if max_sentence_len < len(x[i]):
-            max_sentence_len = len(x[i])
-        if max_sentence_len < len(t[i]):
-            max_sentence_len = len(t[i])
-    x = numpy.zeros((len(x), max_sentence_len), dtype=numpy.int)
-    t = numpy.zeros((len(x), max_sentence_len), dtype=numpy.int)
+    for i in range(len(req)):
+        if max_sentence_len < len(req[i]):
+            max_sentence_len = len(req[i])
+        if max_sentence_len < len(res[i]):
+            max_sentence_len = len(res[i])
+    x = numpy.zeros((len(req), max_sentence_len), dtype=numpy.int)
+    t = numpy.zeros((len(req), max_sentence_len), dtype=numpy.int)
 
     for i, sentence in enumerate(x):
         print(sentence)
