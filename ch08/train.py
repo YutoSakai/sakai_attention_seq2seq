@@ -3,7 +3,8 @@ import sys
 sys.path.append('..')
 import numpy as np
 import matplotlib.pyplot as plt
-from dataset import sequence
+# from dataset import sequence
+from tweet_to_dataset import load_data, get_vocab
 from common.optimizer import Adam
 from common.trainer import Trainer
 from common.util import eval_seq2seq
@@ -13,8 +14,8 @@ from ch07.peeky_seq2seq import PeekySeq2seq
 
 
 # データの読み込み
-(x_train, t_train), (x_test, t_test) = sequence.load_data('date.txt')
-char_to_id, id_to_char = sequence.get_vocab()
+(x_train, t_train), (x_test, t_test) = load_data('date.txt')
+char_to_id, id_to_char = get_vocab()
 
 # 入力文を反転
 x_train, x_test = x_train[:, ::-1], x_test[:, ::-1]
