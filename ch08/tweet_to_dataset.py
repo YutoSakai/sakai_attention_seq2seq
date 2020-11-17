@@ -60,6 +60,7 @@ def load_data(file_name='../../tweet/tweet/tweet2020-11-15嬉しいわ.txt', siz
     for i, sentence in enumerate(req):
         print(sentence)
         for j, word in enumerate(m.parse(sentence).split(" ")):
+            print([word_to_id[word]])
             x[i][j] = [word_to_id[word]]
     for i, sentence in enumerate(res):
         for j, word in enumerate(m.parse(sentence).split(" ")):
