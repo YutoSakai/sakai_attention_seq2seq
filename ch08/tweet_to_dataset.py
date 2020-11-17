@@ -9,6 +9,9 @@ m = MeCab.Tagger("-Owakati")
 id_to_word = {}
 word_to_id = {}
 
+word_to_id['<pad>'] = 0
+id_to_word[0] = '<pad>'
+
 
 def _update_vocab(txt):
     words = m.parse(txt).split(" ")
@@ -56,9 +59,11 @@ def load_data(file_name='../../tweet/tweet/tweet2020-11-15嬉しいわ.txt', siz
 
     for i, sentence in enumerate(req):
         print(sentence)
-        x[i] = [word_to_id[word] for word in m.parse(sentence).split(" ")]
+        for j, word in enumerate(m.parse(sentence).split(" ")):
+            x[i][j] = [word_to_id[word]]
     for i, sentence in enumerate(res):
-        t[i] = [word_to_id[word] for word in m.parse(sentence).split(" ")]
+        for j, word in enumerate(m.parse(sentence).split(" ")):
+            t[i][j] = [word_to_id[word]]
 
     # shuffle
     if seed is not None:
