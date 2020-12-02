@@ -22,7 +22,7 @@ def _update_vocab(txt):
             id_to_word[tmp_id] = word
 
 
-def load_data(file_name='../../tweet/tweet/tweet2020-11-15嬉しいわ.txt', seed=1984):
+def load_data(file_name='../tweet/tweet/tweet2020-11-15嬉しいわ.txt', size=1000, seed=1984):
     if len(sys.argv) >= 2:
         file_name = sys.argv[1]
     file_path = os.path.dirname(os.path.abspath(__file__)) + '/' + file_name
@@ -74,7 +74,7 @@ def load_data(file_name='../../tweet/tweet/tweet2020-11-15嬉しいわ.txt', see
     (x_train, x_test) = x[:split_at], x[split_at:]
     (t_train, t_test) = t[:split_at], t[split_at:]
     print("train size: " + str(len(x_train)))
-    return (x_train, t_train), (t_test, t_test)
+    return (x_train, t_train), (x_test, t_test)
 
 
 def get_vocab():

@@ -233,14 +233,14 @@ def eval_seq2seq(model, question, correct, id_to_char,
     guess = model.generate(question, start_id, len(correct))
 
     # 文字列へ変換
+    if verbos:
+        if is_reverse:
+            question = question[:, ::-1]
     question = ''.join([id_to_char[int(c)] for c in question.flatten()])
     correct = ''.join([id_to_char[int(c)] for c in correct])
     guess = ''.join([id_to_char[int(c)] for c in guess])
 
     if verbos:
-        if is_reverse:
-            question = question[::-1]
-
         colors = {'ok': '\033[92m', 'fail': '\033[91m', 'close': '\033[0m'}
         print('Q', question)
         print('T', correct)

@@ -11,6 +11,7 @@ from common.util import eval_seq2seq
 from attention_seq2seq import AttentionSeq2seq
 from ch07.seq2seq import Seq2seq
 from ch07.peeky_seq2seq import PeekySeq2seq
+import datetime
 
 
 # データの読み込み
@@ -56,8 +57,9 @@ model.save_params()
 
 # グラフの描画
 x = np.arange(len(acc_list))
+fig = plt.figure()
 plt.plot(x, acc_list, marker='o')
 plt.xlabel('epochs')
 plt.ylabel('accuracy')
 plt.ylim(-0.05, 1.05)
-plt.show()
+fig.savefig(str(datetime.datetime.now()) + ".png")
