@@ -9,23 +9,23 @@ def load_data(directory_name) :
     #import pickle
     #import numpy as np
     #単語ファイルロード
-    with open('/root/research/data/'+directory_name+'/index/words.pickle', 'rb') as ff :
+    with open('/root/sakai_attention_seq2seq/keras_base/'+directory_name+'/index/words.pickle', 'rb') as ff :
         words=pickle.load(ff)         
 
     #Encoder Inputデータをロード
-    with open('/root/research/data/'+directory_name+'/dataset/e.pickle', 'rb') as f :
+    with open('/root/sakai_attention_seq2seq/keras_base/'+directory_name+'/dataset/e.pickle', 'rb') as f :
         e = pickle.load(f)
 
     #Decoder Inputデータをロード
-    with open('/root/research/data/'+directory_name+'/dataset/d.pickle', 'rb') as g :
+    with open('/root/sakai_attention_seq2seq/keras_base/'+directory_name+'/dataset/d.pickle', 'rb') as g :
         d = pickle.load(g)
 
     #ラベルデータをロード
-    with open('/root/research/data/'+directory_name+'/dataset/t.pickle', 'rb') as h :
+    with open('/root/sakai_attention_seq2seq/keras_base/'+directory_name+'/dataset/t.pickle', 'rb') as h :
         t = pickle.load(h)
 
     #maxlenロード
-    with open('/root/research/data/'+directory_name+'/dataset/maxlen.pickle', 'rb') as maxlen :
+    with open('/root/sakai_attention_seq2seq/keras_base/'+directory_name+'/dataset/maxlen.pickle', 'rb') as maxlen :
         [maxlen_e, maxlen_d] = pickle.load(maxlen)
 
     n_split=int(e.shape[0]*0.95)            #訓練データとテストデータを95:5に分割
@@ -52,7 +52,7 @@ def prediction(epochs, batch_size ,input_dim, param_name, e, e_t, d, d_t, t, t_t
     n_hidden = int(vec_dim*1.5 ) #隠れ層の次元
 
     prediction = Dialog(maxlen_e,maxlen_d,n_hidden,input_dim,vec_dim,output_dim)
-    emb_param = '/root/research/data/'+directory_name+'/model/usemodel.hdf5'
+    emb_param = '/root/sakai_attention_seq2seq/keras_base/'+directory_name+'/model/usemodel.hdf5'
     row = e.shape[0]
 
     e_train = e.reshape(row,maxlen_e)
@@ -61,6 +61,7 @@ def prediction(epochs, batch_size ,input_dim, param_name, e, e_t, d, d_t, t, t_t
 
     #t_train = t_train.reshape(row,maxlen_d)
     model = prediction.train(e_train, d_train,t_train,batch_size,epochs,emb_param)
+    plot_model(model, show_shapes=True, to_file='seq2seq1203.png')
 
     model.save_weights(emb_param)                                #学習済みパラメータセーブ
 

@@ -4,18 +4,18 @@
 def generate_tensors(maxlen_e,maxlen_d,directory_name) :
  
     # 単語ファイルロード
-    with open('/root/research/data/'+directory_name+'/index/words.pickle', 'rb') as f :
+    with open('/root/sakai_attention_seq2seq/keras_base/'+directory_name+'/index/words.pickle', 'rb') as f :
         words=pickle.load(f)    
 
     # 作成した辞書をロード
-    with open('/root/research/data/'+directory_name+'/index/word_indices.pickle', 'rb') as f :
+    with open('/root/sakai_attention_seq2seq/keras_base/'+directory_name+'/index/word_indices.pickle', 'rb') as f :
         word_indices=pickle.load(f)
 
-    with open('/root/research/data/'+directory_name+'/index/indices_word.pickle', 'rb') as g :
+    with open('/root/sakai_attention_seq2seq/keras_base/'+directory_name+'/index/indices_word.pickle', 'rb') as g :
         indices_word = pickle.load(g)
 
     # 単語順の単語index配列をロード
-    with open('/root/research/data/'+directory_name+'/index/mat_urtext.pickle', 'rb') as ff :
+    with open('/root/sakai_attention_seq2seq/keras_base/'+directory_name+'/index/mat_urtext.pickle', 'rb') as ff :
         mat_urtext = pickle.load(ff)  
 
     # REQREQとRESRESのインデックスを持っておく
@@ -132,27 +132,27 @@ def generate_tensors(maxlen_e,maxlen_d,directory_name) :
     print('データセットの形式 (e.shape, d.shape, t.shape):('+str(e.shape)+','+str(d.shape)+','+str(t.shape)+')')
 
     #Encoder Inputデータをセーブ
-    with open('/root/research/data/'+directory_name+'/dataset/e.pickle', 'wb') as f :
+    with open('/root/sakai_attention_seq2seq/keras_base/'+directory_name+'/dataset/e.pickle', 'wb') as f :
         pickle.dump(e , f)
 
     #Decoder Inputデータをセーブ
-    with open('/root/research/data/'+directory_name+'/dataset/d.pickle', 'wb') as g :
+    with open('/root/sakai_attention_seq2seq/keras_base/'+directory_name+'/dataset/d.pickle', 'wb') as g :
         pickle.dump(d , g)
 
     #ラベルデータをセーブ
-    with open('/root/research/data/'+directory_name+'/dataset/t.pickle', 'wb') as h :
+    with open('/root/sakai_attention_seq2seq/keras_base/'+directory_name+'/dataset/t.pickle', 'wb') as h :
         pickle.dump(t , h)
 
     #maxlenセーブ
-    with open('/root/research/data/'+directory_name+'/dataset/maxlen.pickle', 'wb') as maxlen :
+    with open('/root/sakai_attention_seq2seq/keras_base/'+directory_name+'/dataset/maxlen.pickle', 'wb') as maxlen :
         pickle.dump([maxlen_e, maxlen_d] , maxlen)
 
 
     #各単語の出現頻度順位（降順）
-    with open('/root/research/data/'+directory_name+'/dataset/freq_indices.pickle', 'wb') as f :    
+    with open('/root/sakai_attention_seq2seq/keras_base/'+directory_name+'/dataset/freq_indices.pickle', 'wb') as f :
         pickle.dump(freq_indices , f)
     #出現頻度→インデックス変換
-    with open('/root/research/data/'+directory_name+'/dataset/indices_freq.pickle', 'wb') as f :    
+    with open('/root/sakai_attention_seq2seq/keras_base/'+directory_name+'/dataset/indices_freq.pickle', 'wb') as f :
         pickle.dump(indices_freq , f)
 
 if __name__ == '__main__':  

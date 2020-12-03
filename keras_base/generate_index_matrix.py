@@ -3,7 +3,7 @@
 def generate_mat(directory_name) :
 
     # どうせ1ファイルだろうけどlistディレクトリにあるファイルのパスの配列をglobによって取得
-    file_list = glob.glob('/root/research/data/'+directory_name+'/list/*')
+    file_list = glob.glob('/root/sakai_attention_seq2seq/keras_base/'+directory_name+'/list_corpus/*')
 
     print('listディレクトリ内のlist_corpusファイル数:'+str(len(file_list)))
     mat = []
@@ -86,18 +86,18 @@ def generate_mat(directory_name) :
     print('発言単語配列の次元:', mat_urtext.shape)
 
     #作成した辞書をセーブ
-    with open('/root/research/data/'+directory_name+'/index/word_indices.pickle', 'wb') as f :
+    with open('/root/sakai_attention_seq2seq/keras_base/'+directory_name+'/index/word_indices.pickle', 'wb') as f :
         pickle.dump(word_indices , f)
 
-    with open('/root/research/data/'+directory_name+'/index/indices_word.pickle', 'wb') as g :
+    with open('/root/sakai_attention_seq2seq/keras_base/'+directory_name+'/index/indices_word.pickle', 'wb') as g :
         pickle.dump(indices_word , g)
 
     #単語ファイルセーブ
-    with open('/root/research/data/'+directory_name+'/index/words.pickle', 'wb') as h :
+    with open('/root/sakai_attention_seq2seq/keras_base/'+directory_name+'/index/words.pickle', 'wb') as h :
         pickle.dump(words , h)
 
     #発言順の単語index配列をセーブ
-    with open('/root/research/data/'+directory_name+'/index/mat_urtext.pickle', 'wb') as ff :
+    with open('/root/sakai_attention_seq2seq/keras_base/'+directory_name+'/index/mat_urtext.pickle', 'wb') as ff :
         pickle.dump(mat_urtext , ff)    
 
 if __name__ == '__main__':
