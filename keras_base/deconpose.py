@@ -52,7 +52,7 @@ def decomposition(file, jumanpp) :
 #*******************************************************************************
 from pyknp import Juman
 jumanpp = Juman()
-file_list=glob.glob('corpus/*')
+file_list=glob.glob('tweet/raw/*')
 file_list.sort()
 print(len(file_list))
 
