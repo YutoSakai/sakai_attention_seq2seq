@@ -120,7 +120,7 @@ if __name__ == '__main__':
     jumanpp = Juman()
 
     # rawディレクトリ内にある.txtファイルパスのリストをglobによって取得する
-    file_list=glob.glob('/root/research/data/'+directory_name+'/raw/*.txt')
+    file_list=glob.glob('/root/sakai_attention_seq2seq/keras_base/'+directory_name+'/raw/*.txt')
     print('rawディレクトリ内のtxtファイル数:'+str(len(file_list)))
 
     # ファイル名でソートする(日付順などになる)
@@ -146,7 +146,7 @@ if __name__ == '__main__':
     #     ['RESRES', ':', '私', 'の', '名前', 'は', '田中', 'です'],
     # ]
     # のような形である
-    with open('/root/research/data/'+directory_name+'/list/list_corpus.pickle', 'wb') as g :
+    with open('/root/sakai_attention_seq2seq/keras_base/'+directory_name+'/list_corpus/list_corpus.pickle', 'wb') as g :
         pickle.dump(generated_list, g)
 
     print('総単語数:'+str(len(generated_list)))
